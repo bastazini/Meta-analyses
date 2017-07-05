@@ -1,7 +1,9 @@
 #installing and pulling packages
-install.packages("meta")
+install.packages("meta", "metafor")
 require(meta)
+require(metafor)
 
+####For dichotomous data
 ###Creating some data
 study = c("Doe_a","Doe_b","Doe_c","Doe_d", "Doe_e")
 year= c(2017,2016, 2015,2014, 2013)
@@ -23,4 +25,4 @@ data.ma =data.frame(study, year,ei,si,ec,sc);data
 ##simple meta-analysis of binary outcome data
 meta.anala=metabin(ei,si,ec,sc,study, data=data.ma);meta.anala
 #forest plot
-forest (meta.anala, comb.fixed=FALSE)
+forest (meta.anala, comb.fixed=T)
