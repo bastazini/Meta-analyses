@@ -26,3 +26,23 @@ data.ma =data.frame(study, year,ei,si,ec,sc);data
 meta.anala=metabin(ei,si,ec,sc,study, data=data.ma);meta.anala
 #forest plot
 forest (meta.anala, comb.fixed=T)
+
+
+##effect size  and meta-regression 
+effect.size.nest=escalc(measure = "ROM", n1i = samplewarming, n2i = samplecontrol, m1i = mean_nest_warming, 
+                        m2i = mean_nest_control, sd1i = sd_nest_warming, sd2i = sd_nest_control, data=dados)
+
+effect.size.nest2=escalc(measure = "CVR", n1i = samplewarming, n2i = samplecontrol, m1i = mean_nest_warming, 
+                        m2i = mean_nest_control, sd1i = sd_nest_warming, sd2i = sd_nest_control, data=dados)
+
+#model nestd
+metareg.nest=rma(yi = yi, vi = vi, mod = ~   openness+ initial_homogeneous+system +study_duration+temp_change, method = "REML", 
+                data = effect.size.nest)
+summary(metareg.nest)
+forest.rma(metareg.nest,atransf=exp,addcred=TRUE)
+
+metareg.nest2=rma(yi = yi, vi = vi, mod = ~   openness+ initial_homogeneous+system +study_duration+temp_change, method = "REML", 
+                 data = effect.size.nest2)
+summary(metareg.nest2)
+
+forest.rma(metareg.nest2,atransf=exp,addcred=TRUE)
