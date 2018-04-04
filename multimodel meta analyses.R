@@ -1,4 +1,6 @@
+###Original code from:
 #http://www.metafor-project.org/doku.php/tips:model_selection_with_glmulti
+
 library(glmulti)
 
 
