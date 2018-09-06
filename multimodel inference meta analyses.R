@@ -1,13 +1,16 @@
-###Original code from:
+#################################################
+#Some of the code is modified from:
 #http://www.metafor-project.org/doku.php/tips:model_selection_with_glmulti
+#################################################
+## packages
+require(glmulti)
+require(metafor)
 
-library(glmulti)
-
-
+##Handling data
 #removing rows with missing data before hand
 dados=dados[!apply(dat[,c("openness", "initial_homogeneous", "system", ...)], 1, anyNA),]
 
-
+##Multimodel inference
 ##function
 rma.glmulti <- function(formula, data, ...)
   rma(formula, vi, data=data, method="ML", ...)
