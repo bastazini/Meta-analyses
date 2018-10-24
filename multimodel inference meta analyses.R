@@ -1,6 +1,6 @@
 #################################################
-#Some of the code is modified from:
-#http://www.metafor-project.org/doku.php/tips:model_selection_with_glmulti
+#Code for Multi model inference meta-analysis
+#Some of the code is modified from: http://www.metafor-project.org/doku.php/tips:model_selection_with_glmulti
 #################################################
 ## packages
 require(glmulti)
