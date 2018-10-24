@@ -1,6 +1,6 @@
-##################################
+####################################################################
 Map showing the distribution of compiled studies by ecosystem
-##################################
+####################################################################
 require(maps)
 
 ###Generate a map with the study sites
@@ -19,8 +19,8 @@ barplot(percentage, horiz=T,xlab="% of Datasets",las=2, col="black",las=2)
 
 ###Getting climatic data from world clim
 
-library(raster)
-library(sp)
+require(raster)
+require(sp)
 
 r = getData("worldclim",var="bio",res=10)
 r = r[[c(1,7,12)]]
