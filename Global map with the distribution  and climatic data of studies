@@ -1,32 +1,36 @@
+##################################
+Map showing the distribution of compiled studies by ecosystem
+##################################
 require(maps)
 
-#generate a map with the study sites
+###Generate a map with the study sites
 dados1=read.table(pipe("pbpaste"), sep="\t", header=T)
 map("world", interior=F, col="gray70", fill=F, type="l", plot=T, lwd=1)
 
 
-#barplot with the relativedirtibution of studies per type of system 
+###Barplot with the relativedirtibution of studies per type of system 
 points (x = dados$long, y = dados$lat,col=as.factor (dados$system), pch=16, lwd=1)
 here=locator(1)
 legend(here, as.character(unique(dados$system)), fill = unique(dados$system, y.intersp = 0.25, cex = 0.25))
 
-porcentagem=((table(dados$system)/sum(table(dados$system)))*100);porcentagem
-barplot(porcentagem, horiz=T,xlab="% of Datasets",las=2, col="black",las=2)
+###Calculating and ploting percentage of studies per system  
+percentage=((table(dados$system)/sum(table(dados$system)))*100);percentage
+barplot(percentage, horiz=T,xlab="% of Datasets",las=2, col="black",las=2)
 
-###getting climataic data from world clim
+###Getting climatic data from world clim
 
 library(raster)
 library(sp)
 
-r <- getData("worldclim",var="bio",res=10)
-r <- r[[c(1,7,12)]]
-names(r) <- c("Temperatura", "range", "precipitacao")
-coords <- data.frame(dados$long,dados$lat)
+r = getData("worldclim",var="bio",res=10)
+r = r[[c(1,7,12)]]
+names(r) = c("Temperatura", "range", "precipitacao")
+coords = data.frame(dados$long,dados$lat)
 coords=na.omit(coords)
 
-points <- SpatialPoints(coords, proj4string = r@crs)
+points = SpatialPoints(coords, proj4string = r@crs)
 
-values <- extract(r,points)
+values = extract(r,points)
 
-df <- cbind.data.frame(coordinates(points),values)
-df
+df.climatic.data = cbind.data.frame(coordinates(points),values);df.climatic.data
+
