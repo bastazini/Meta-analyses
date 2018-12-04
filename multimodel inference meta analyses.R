@@ -1,17 +1,17 @@
-#################################################
+################################################
 #Code for Multi model inference meta-analysis
 #Some of the code is modified from: http://www.metafor-project.org/doku.php/tips:model_selection_with_glmulti
-#################################################
+################################################
 ## packages
 require(glmulti)
 require(metafor)
 
 ##Handling data
-#removing rows with missing data before hand
+#removing rows with missing data before handling data
 dados=dados[!apply(dat[,c("openness", "initial_homogeneous", "system", ...)], 1, anyNA),]
 
-##Multimodel inference
-##function
+
+##Function for Multimodel inference
 rma.glmulti <- function(formula, data, ...)
   rma(formula, vi, data=data, method="ML", ...)
 
@@ -29,7 +29,7 @@ tmp
 #best model
 summary(res@objects[[1]])
 
-#importance
+#ploting relative variable importance
 plot(res, type="s")
 
 
@@ -49,8 +49,7 @@ teste2=teste[,4]
 teste2=edit(teste2)
 barplot(teste2, horiz=T,xlab="Relative importance",las=2, col="black",las=2)
 
-##predicted values
-
+## Extracting predicted values
 x <- c("length"=15, "openness" = open,"initial_homogeneous"= y,"system"= "Marine")
 preds <- list()
 
@@ -67,7 +66,7 @@ for (j in 1:res@nbmods) {
   
 }
 
-#multimodel predicted value
+#Extracting predicted value from multimodel inference 
 weights <- weightable(res)$weights
 yhat <- sum(weights * sapply(preds, function(x) x$pred))
 round(yhat, 3)
