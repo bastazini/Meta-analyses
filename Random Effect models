@@ -1,4 +1,4 @@
-#Random effect models
+#Randon effect models
 require(metafor)
 
 ##Importing data
@@ -6,32 +6,48 @@ dados=read.table(pipe("pbpaste"), sep="\t", header=T)
 
 
 
-##Calculating effect size
+##Calculating effect sizes and random effect model
 ####Alfa
 ##effect size Richness
 effect.size.alfa=escalc(measure = "ROM", n1i =  samplecontrol, n2i = samplewarming, m1i = mean_alfa_control, 
                         m2i = mean_alfa_warming , sd1i = sd_alfa_control, sd2i = sd_alfa_warming, data=dados)
+##model
+random_alfa=rma(yi = yi, vi = vi, method = "REML", data = effect.size.alfa)
+summary(random_alfa)
 
 ##effect size ENS.Pie
 effect.size.ens=escalc(measure = "ROM", n1i =  samplecontrol, n2i = samplewarming, m1i = mean_ens_control, 
                        m2i = mean_ens_warming , sd1i = sd_ens_control, sd2i = sd_ens_warming, data=dados)
+##model
+random_ens=rma(yi = yi, vi = vi, method = "REML", data = effect.size.ens)
+summary(random_ens)
+
 ####Beta
 
 ##effect size nestdeness
 effect.size.nest=escalc(measure = "ROM", n1i = samplecontrol, n2i = samplewarming, m1i = mean_nest_control, 
                         m2i = mean_nest_warming, sd1i = sd_nest_control, sd2i = sd_nest_warming, data=dados)
-
+##model
+random_nest=rma(yi = yi, vi = vi, method = "REML", data = effect.size.nest)
+summary(random_nest)
 
 ##effect size turnover
 effect.size.turn=escalc(measure = "ROM", n1i = samplecontrol, n2i = samplewarming, m1i = mean_turn_control, 
                         m2i = mean_turn_warming, sd1i =  sd_turn_control, sd2i =sd_turn_warming, data=dados)
-
+##model
+random_turn=rma(yi = yi, vi = vi, method = "REML", data = effect.size.turn)
+summary(random_turn)
 
 #effect size gradient(nestdmess)
 effect.size.grad=escalc(measure = "ROM", n1i = samplecontrol, n2i = samplewarming, m1i = mean_grad_control , 
                         m2i = mean_grad_warming, sd1i = sd_grad_control, sd2i = sd_grad_warming, data=dados)
+##model
+random_grad=rma(yi = yi, vi = vi, method = "REML", data = effect.size.grad)
+summary(random_grad)
 
 ##effect size turnover (balanced variation of abundance)
 effect.size.bal=escalc(measure = "ROM", n1i = samplecontrol, n2i = samplewarming, m1i = mean_abund_control, 
                        m2i = mean_bal_warming, sd1i = sd_abund_control, sd2i = sd_bal_warming, data=dados)
-
+##model
+random_bal=rma(yi = yi, vi = vi, method = "REML", data = effect.size.bal)
+summary(random_bal)
