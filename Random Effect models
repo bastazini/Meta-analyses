@@ -46,8 +46,9 @@ random_grad=rma(yi = yi, vi = vi, method = "REML", data = effect.size.grad)
 summary(random_grad)
 
 ##effect size turnover (balanced variation of abundance)
-effect.size.bal=escalc(measure = "ROM", n1i = samplecontrol, n2i = samplewarming, m1i = mean_abund_control, 
-                       m2i = mean_bal_warming, sd1i = sd_abund_control, sd2i = sd_bal_warming, data=dados)
+effect.size.bal=escalc(measure = "ROM", n1i = samplecontrol, n2i = samplewarming, m1i = mean_bal_control, 
+                       m2i = mean_bal_warming, sd1i = sd_bal_control, sd2i = sd_bal_warming, data=dados)
 ##model
 random_bal=rma(yi = yi, vi = vi, method = "REML", data = effect.size.bal)
 summary(random_bal)
+
