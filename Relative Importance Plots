@@ -1,0 +1,56 @@
+par(mfrow=c(1,2))
+
+#richness
+round(coef(res.rich), 4)
+teste=round(coef(res.rich), 4)
+teste2=teste[,4]
+teste3=edit(teste2)
+par(mar=c(6,6,3,3))
+barplot(teste3, horiz=T,xlab="", main= "Richness",las=2, col="black",las=2)
+
+#ENS.Pie
+round(coef(res.ens), 4)
+teste=round(coef(res.ens), 4)
+teste2=teste[,4]
+teste3=edit(teste2)
+par(mar=c(6,6,3,3))
+barplot(teste3, horiz=T,xlab="", main= "ENS.Pie",las=2, col="black",las=2)
+
+
+#Nest
+round(coef(res.nest), 4)
+teste=round(coef(res.nest), 4)
+teste2=teste[,4]
+teste3=edit(teste2)
+par(mar=c(6,6,3,3))
+barplot(teste3, horiz=T,xlab="", main= "Nestdness",las=2, col="black",las=2)
+
+#Turn
+round(coef(res.turn), 4)
+teste=round(coef(res.turn), 4)
+teste2=teste[,4]
+teste3=edit(teste2)
+par(mar=c(6,6,3,3))
+barplot(teste3, horiz=T,xlab="", main= "Turnover",las=2, col="black",las=2)
+
+#Grad
+round(coef(res.grad), 4)
+teste=round(coef(res.grad), 4)
+teste2=teste[,4]
+teste3=edit(teste2)
+par(mar=c(6,6,3,3))
+barplot(teste3, horiz=T,xlab="", main= "Gradient abundance",las=2, col="black",las=2)
+
+#Bal
+round(coef(res.bal), 4)
+teste=round(coef(res.bal), 4)
+teste2=teste[,4]
+teste3=edit(teste2)
+par(mar=c(6,6,3,3))
+barplot(teste3, horiz=T,xlab="", main= "Balanced bundance",las=2, col="black",las=2)
+
+beanplot(dados$mean_nest_control,dados$mean_turn_control,dados$mean_nest_warming,dados$mean_turn_warming,main="Incidence based indices",axes=F)
+beanplot(dados$mean_grad_control,dados$mean_bal_control,dados$mean_grad_warming,dados$mean_bal_warming,main="Abundance based indices",axes=F)
+axis(1, at = 1:4, labels=c("Abundance gradient","Balanced variation in abundance","Abundance gradient,"Balanced variation in abundance"))
+axis(2, at = 0:1)
+box(which = "plot")
