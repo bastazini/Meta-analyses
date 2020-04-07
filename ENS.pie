@@ -1,0 +1,46 @@
+##packages
+require(vegetarian)
+require(vegan)
+require (metafor)
+
+rm(list=ls(dados, ens))
+
+##colums as species, rows as sites
+dados=read.table(pipe("pbpaste"), sep="\t", header=T)
+#dados=t(dados)
+#dados=dados*100
+
+##calculate equivalent number for simpson
+##ENS.pie (mobR)
+ens=calc_PIE(dados,ENS=T);ens
+mean(ens)
+sd(ens)
+
+##ENS (hill numbers from vegetarian)
+ens=apply(dados,MARGIN=1,FUN=d,lev="alpha", q=2);ens
+mean(ens)
+sd(ens)
+
+
+## Calculating effect size
+effect.size.ens=escalc(measure = "ROM", n1i =  samplecontrol, n2i = samplewarming, m1i = mean_ens_control, 
+                        m2i = mean_ens_warming , sd1i = sd_ens_control, sd2i = sd_ens_warming, data=dados)
+
+
+## Random effect Model
+random_ens=rma(yi = yi, vi = vi, method = "REML", data = effect.size.ens)
+summary(random_ens)
+
+###
+teste
+x=c(1,2,3,4,5)
+
+avg=c(0.0118,-0.0585,-0.0547,-0.0450, -0.0522)
+
+lower=c(-0.0311,-0.1089,-0.1013,-0.0842,-0.0929)
+upper=c(0.0546,-0.0081, -0.0080,-0.0057,-0.0115)
+plot(1, type="n", xlab="", xaxt="n", ylab="Intercep (95%IC)", xlim=c(1, 5), ylim=c(-.2, .2))
+points(x,avg, pch=16)
+arrows(x, lower, x, upper, length=0.05, angle=90, code=3)
+abline(h=0,lty=2, lwd=2)
+axis(side=1,at=x,label=c("Richness"," Shannon"," Evennes", "ENS", "ENS.pie"), las=1)
