@@ -1,4 +1,10 @@
 ##packages
+install.packages('devtools')
+library(devtools)
+install.packages(c('bindrcpp','glue','pkgconfig','tibble','plyr','dplyr'))
+install_github('MoBiodiv/mobr')
+require(mobr)
+
 require(vegetarian)
 require(vegan)
 require (metafor)
