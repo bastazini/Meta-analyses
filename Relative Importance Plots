@@ -47,7 +47,7 @@ teste=round(coef(res.bal), 4)
 teste2=teste[,4]
 teste3=edit(teste2)
 par(mar=c(6,6,3,3))
-barplot(teste3, horiz=T,xlab="", main= "Balanced bundance",las=2, col="black",las=2)
+barplot(teste3, horiz=T,xlab="", main= "Balanced abundance",las=2, col="black",las=2)
 
 beanplot(dados$mean_nest_control,dados$mean_turn_control,dados$mean_nest_warming,dados$mean_turn_warming,main="Incidence based indices",axes=F)
 beanplot(dados$mean_grad_control,dados$mean_bal_control,dados$mean_grad_warming,dados$mean_bal_warming,main="Abundance based indices",axes=F)
